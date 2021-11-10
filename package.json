@@ -12,9 +12,15 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.17",
+    "apollo-server-lambda": "^3.5.0",
+    "faunadb": "^4.4.1",
+    "formik": "^2.2.9",
     "gatsby": "^4.1.1",
     "gatsby-plugin-image": "^2.1.0",
     "gatsby-plugin-manifest": "^4.1.1",
@@ -23,8 +29,22 @@
     "gatsby-plugin-sitemap": "^5.1.1",
     "gatsby-source-filesystem": "^4.1.0",
     "gatsby-transformer-sharp": "^4.1.0",
+    "graphql": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/react": "^6.3.12",
+    "autoprefixer": "^10.4.0",
+    "babel-loader": "^8.2.3",
+    "gatsby-plugin-postcss": "^5.1.0",
+    "postcss": "^8.3.11",
+    "tailwindcss": "^2.2.19"
   }
 }
