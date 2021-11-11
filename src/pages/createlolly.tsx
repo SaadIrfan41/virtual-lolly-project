@@ -126,7 +126,9 @@ const createlolly = () => {
                           },
                         })
 
-                        navigate(`/lolly/${data?.data?.createLolly?.id}`)
+                        navigate(
+                          `/lolly?lollyid=${data?.data?.createLolly?.id}`
+                        )
                       } catch (error) {
                         console.log(error)
                       }

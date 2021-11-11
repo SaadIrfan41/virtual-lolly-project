@@ -1,7 +1,3 @@
-var baseUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8888'
-    : 'https://serverless-virtual-lolly.netlify.app'
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://www.yourdomain.tld',
@@ -24,7 +20,7 @@ module.exports = {
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: 'Lollies',
         // Url to query from
-        url: `${baseUrl}/.netlify/functions/lolly`,
+        url: `https://serverless-virtual-lolly.netlify.app/.netlify/functions/lolly`,
       },
     },
     'gatsby-plugin-image',
