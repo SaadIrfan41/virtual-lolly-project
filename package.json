@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.17",
-    "apollo-server-lambda": "^3.5.0",
+    "apollo-server-lambda": "^2.25.2",
+    "axios": "^0.24.0",
     "faunadb": "^4.4.1",
     "formik": "^2.2.9",
     "gatsby": "^4.1.1",

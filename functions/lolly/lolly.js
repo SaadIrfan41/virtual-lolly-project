@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server-lambda')
 const faunadb = require('faunadb')
-
+const axios = require('axios')
 const client = new faunadb.Client({
   secret: process.env.GATSBY_FaunaDB_Secret_Key,
 })
@@ -57,31 +57,28 @@ const resolvers = {
     },
   },
   Mutation: {
-    createLolly: async (_, args) => {
+    createLolly: async (
+      _,
+      { sender, reciever, message, lollyTop, lollyMiddle, lollyBottom }
+    ) => {
       try {
         const result = await client.query(
           q.Create(q.Collection('Lolly'), {
             data: {
-              sender: args.sender,
-              reciever: args.reciever,
-              message: args.message,
-              lollyTop: args.lollyTop,
-              lollyMiddle: args.lollyMiddle,
-              lollyBottom: args.lollyBottom,
+              sender,
+              reciever,
+              message,
+              lollyTop,
+              lollyMiddle,
+              lollyBottom,
             },
           })
         )
-        //   axios
-        //     .post(
-        //       'https://api.netlify.com/build_hooks/6023ad6c9a58487438e74ebb'
-        //     )
-        //     .then(function (response) {
-        //       console.log(response)
-        //     })
-        //     .catch(function (error) {
-        //       console.error(error)
-        //     })
-        console.log(result)
+        const res = await axios.post(
+          'https://api.netlify.com/build_hooks/618c22a964096919d2bce7fe'
+        )
+
+        console.log(res)
         return {
           id: result.ref.id,
           sender: result.data.sender,
@@ -101,6 +98,8 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  playground: true,
+  introspection: true,
 })
 
 const handler = server.createHandler()

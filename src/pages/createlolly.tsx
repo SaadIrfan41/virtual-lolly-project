@@ -4,8 +4,40 @@ import TextareaAutosize from 'react-textarea-autosize'
 import Lolly from '../components/Lolly'
 import * as yup from 'yup'
 import { Link } from 'gatsby'
+import { useMutation, gql } from '@apollo/client'
+import { navigate } from 'gatsby-link'
+
+const CREATE_LOLLY = gql`
+  mutation (
+    $sender: String!
+    $reciever: String!
+    $message: String!
+    $lollyTop: String!
+    $lollyMiddle: String!
+    $lollyBottom: String!
+  ) {
+    createLolly(
+      sender: $sender
+      reciever: $reciever
+      message: $message
+      lollyTop: $lollyTop
+      lollyMiddle: $lollyMiddle
+      lollyBottom: $lollyBottom
+    ) {
+      id
+      sender
+      reciever
+      message
+      lollyTop
+      lollyMiddle
+      lollyBottom
+    }
+  }
+`
 
 const createlolly = () => {
+  const [createLolly] = useMutation(CREATE_LOLLY)
+
   const [lollyTop, setLollyTop] = useState('#d52358')
   const [lollyMiddle, setLollyMiddle] = useState('#e95946')
   const [lollyBottom, setLollyBottom] = useState('#deaa43')
@@ -27,7 +59,7 @@ const createlolly = () => {
             <input
               type='color'
               value={lollyTop}
-              className='rounded-full h-14 border-2 w-14 overflow-hidden '
+              className='rounded-full h-14 border-2 w-14 overflow-hidden cursor-pointer '
               onChange={(e) => {
                 setLollyTop(e.target.value)
               }}
@@ -36,7 +68,7 @@ const createlolly = () => {
             <input
               type='color'
               value={lollyMiddle}
-              className='rounded-full h-14 border-2 w-14 overflow-hidden'
+              className='rounded-full h-14 border-2 w-14 overflow-hidden cursor-pointer'
               onChange={(e) => {
                 setLollyMiddle(e.target.value)
               }}
@@ -47,7 +79,7 @@ const createlolly = () => {
               name='lollyBottom'
               id='lollyBottom'
               value={lollyBottom}
-              className='rounded-full h-14 border-2 w-14 overflow-hidden'
+              className='rounded-full h-14 border-2 w-14 overflow-hidden cursor-pointer'
               onChange={(e) => {
                 setLollyBottom(e.target.value)
               }}
@@ -82,18 +114,22 @@ const createlolly = () => {
                     })}
                     onSubmit={async (values) => {
                       console.log(values)
-                      // try {
-                      //   const result = await firebase
-                      //     .auth()
-                      //     .signInWithEmailAndPassword(
-                      //       values.email,
-                      //       values.password
-                      //     )
+                      try {
+                        const data = await createLolly({
+                          variables: {
+                            sender: values.sender,
+                            reciever: values.reciever,
+                            message: values.message,
+                            lollyTop: lollyTop,
+                            lollyMiddle: lollyMiddle,
+                            lollyBottom: lollyBottom,
+                          },
+                        })
 
-                      //   console.log(result)
-                      // } catch (error) {
-                      //   console.log(error)
-                      // }
+                        navigate(`/lolly/${data?.data?.createLolly?.id}`)
+                      } catch (error) {
+                        console.log(error)
+                      }
                     }}
                   >
                     {({
