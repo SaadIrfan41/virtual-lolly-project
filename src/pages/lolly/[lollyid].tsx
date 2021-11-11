@@ -59,9 +59,9 @@ const lolly = ({ serverData }) => {
               <div className='flex items-center'>
                 <div>
                   <Lolly
-                    lollyTop={data.getLolly.lollyTop}
-                    lollyMiddle={data.getLolly.lollyMiddle}
-                    lollyBottom={data.getLolly.lollyBottom}
+                    lollyTop={data?.getLolly?.lollyTop}
+                    lollyMiddle={data?.getLolly?.lollyMiddle}
+                    lollyBottom={data?.getLolly?.lollyBottom}
                   />
                 </div>
               </div>
@@ -82,7 +82,7 @@ const lolly = ({ serverData }) => {
                           name='reciever'
                           type='text'
                           disabled
-                          defaultValue={data.getLolly.reciever}
+                          defaultValue={data?.getLolly?.reciever}
                           className={`appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none  sm:text-sm bg-gray-300 focus:bg-white `}
                         />
                       </div>
@@ -100,7 +100,7 @@ const lolly = ({ serverData }) => {
                           id='message'
                           name='message'
                           disabled
-                          defaultValue={data.getLolly.message}
+                          defaultValue={data?.getLolly?.message}
                           className={`appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none  sm:text-sm h-48 bg-gray-300 focus:bg-white`}
                         />
                       </div>
@@ -120,7 +120,7 @@ const lolly = ({ serverData }) => {
                           type='sender'
                           autoComplete='current-sender'
                           disabled
-                          defaultValue={data.getLolly.sender}
+                          defaultValue={data?.getLolly?.sender}
                           className={`appearance-none block w-full px-3 py-2 rounded-md shadow-sm placeholder-gray-400 focus:outline-none sm:text-sm bg-gray-300 focus:bg-white`}
                         />
                       </div>
