@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client'
 import React from 'react'
-import Lolly from '../../components/Lolly'
+import Lolly from '../components/Lolly'
 
 const GET_LOLLIES = gql`
   query ($lollyid: ID!) {
@@ -16,7 +16,7 @@ const GET_LOLLIES = gql`
   }
 `
 
-const index = ({ location }) => {
+const lolly = ({ location }) => {
   const lollyid = location.search.slice(9)
 
   //   console.log('Server data', serverData)
@@ -138,11 +138,11 @@ const index = ({ location }) => {
   )
 }
 
-export default index
-export async function getServerData(context) {
-  console.log(context.query.lollyid)
-  const lollyid = context.query.lollyid
-  return {
-    props: lollyid,
-  }
-}
+export default lolly
+// export async function getServerData(context) {
+//   console.log(context.query.lollyid)
+//   const lollyid = context.query.lollyid
+//   return {
+//     props: lollyid,
+//   }
+// }
