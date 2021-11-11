@@ -74,11 +74,11 @@ const resolvers = {
             },
           })
         )
-        const res = await axios.post(
-          'https://api.netlify.com/build_hooks/618c22a964096919d2bce7fe'
-        )
+        // const res = await axios.post(
+        //   'https://api.netlify.com/build_hooks/618c22a964096919d2bce7fe'
+        // )
 
-        console.log(res)
+        // console.log(res)
         return {
           id: result.ref.id,
           sender: result.data.sender,

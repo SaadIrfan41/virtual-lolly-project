@@ -16,11 +16,13 @@ const GET_LOLLIES = gql`
   }
 `
 
-const lolly = ({ serverData }) => {
-  console.log('Server data', serverData)
+const index = ({ location }) => {
+  const lollyid = location.search.slice(9)
+
+  //   console.log('Server data', serverData)
   const { loading, error, data } = useQuery(GET_LOLLIES, {
     variables: {
-      lollyid: serverData,
+      lollyid: lollyid,
     },
   })
 
@@ -53,7 +55,7 @@ const lolly = ({ serverData }) => {
               <div
                 style={{ textShadow: '#e0f 0 0 20px' }}
                 className='font-custom font-extrabold text-white text-4xl text-center mt-7'
-              >{`https://serverless-virtual-lolly.netlify.app/lolly?lollyid=${serverData}`}</div>
+              >{`https://serverless-virtual-lolly.netlify.app/lolly?lollyid=${lollyid}`}</div>
             </div>
             <div className='flex items-center w-screen justify-center'>
               <div className='flex items-center'>
@@ -136,7 +138,7 @@ const lolly = ({ serverData }) => {
   )
 }
 
-export default lolly
+export default index
 export async function getServerData(context) {
   console.log(context.query.lollyid)
   const lollyid = context.query.lollyid
